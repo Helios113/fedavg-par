@@ -1,0 +1,38 @@
+modalities:
+  [
+    { acc1: [5, 6, 7], gyro1: [8, 9, 10], mag1: [11, 12, 13] },
+    { acc1: [5, 6, 7], gyro1: [8, 9, 10], mag1: [11, 12, 13] },
+    { acc1: [5, 6, 7], gyro1: [8, 9, 10], mag1: [11, 12, 13] },
+    {acc1: [5, 6, 7]},
+    {gyro1: [8, 9, 10]},
+    {mag1: [11, 12, 13]}
+  ]
+
+n_clients: 6
+n_sets_train: 6
+n_sets_test: 1
+batch_size: 128
+fedGlob: True
+fedLoc: True
+lr: 1e-4
+optim: Adam
+lg_frac: 0
+rounds: 2000
+epochs: 8
+iid: False
+penalty: False
+classes_per_client_training: 8
+classes_per_client_testing: 12
+train_data_portion: 0.7
+test_data_portion: 0.3
+hidden_dims: 2
+mlp_dims: [32, 16, 12]
+train: 2
+data_path: "/home/preslav/Projects/My-FegAvg/data/data_all.csv"
+
+
+eval: False
+
+corr: [
+     [0,1,2,3,4,5]
+]

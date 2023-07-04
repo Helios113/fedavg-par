@@ -1,0 +1,9 @@
+*.txt
+.vscode
+__pycache__
+*.mp
+*.png
+*.csv
+*.zip
+glob
+loc
