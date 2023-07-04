@@ -2,14 +2,14 @@ modalities:
   [
     { acc1: [5, 6, 7], gyro1: [8, 9, 10], mag1: [11, 12, 13] },
     { acc1: [5, 6, 7], gyro1: [8, 9, 10], mag1: [11, 12, 13] },
-    { acc1: [5, 6, 7], gyro1: [8, 9, 10], mag1: [11, 12, 13] },
-    {acc1: [5, 6, 7]},
-    {gyro1: [8, 9, 10]},
-    {mag1: [11, 12, 13]}
+    { acc2: [14, 15, 16], gyro2: [17, 18, 19], mag2: [20, 21, 22] },
+    { acc2: [14, 15, 16], gyro2: [17, 18, 19], mag2: [20, 21, 22] },
+    {acc1: [5, 6, 7], gyro1: [8, 9, 10], mag1: [11, 12, 13],acc2: [14, 15, 16], gyro2: [17, 18, 19], mag2: [20, 21, 22]
+    }
   ]
 
-n_clients: 6
-n_sets_train: 6
+n_clients: 5
+n_sets_train: 5
 n_sets_test: 1
 batch_size: 128
 fedGlob: True
@@ -17,7 +17,7 @@ fedLoc: True
 lr: 1e-4
 optim: Adam
 lg_frac: 0
-rounds: 4000
+rounds: 2000
 epochs: 8
 iid: False
 penalty: True
@@ -27,12 +27,12 @@ train_data_portion: 0.7
 test_data_portion: 0.3
 hidden_dims: 2
 mlp_dims: [32, 16, 12]
-train: 3
 data_path: "/home/preslav/Projects/fedavg-par/data/data_all.csv"
 
-
+train: 3
 eval: False
-
 corr: [
-     [0,1,2,3,4,5]
+     [0,1,2,3,4]
 ]
+sig: False
+diff: True

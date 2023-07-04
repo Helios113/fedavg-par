@@ -24,12 +24,12 @@ class FedDataset(Dataset):
         return [self.data[item], self.target[item]]
 
 
-def get_data(path, clients, iid, data_info):
+def get_data(path, training_path, clients, iid, data_info):
     np.random.seed(0)
     torch.manual_seed(0)
     random.seed(0)
     dataset_train, dataset_test = load_data(
-        path, data_info.train_data_portion, data_info.test_data_portion
+        path,training_path, data_info.train_data_portion, data_info.test_data_portion
     )
     if iid:
         dict_users_train = iid_data(dataset_train, clients)
@@ -116,7 +116,7 @@ def non_iid_data(daTa, num_users, classesPerClient, initialK = None):
     return dict_users
 
 
-def load_data(path, train_data_portion, test_data_portion):
+def load_data(path,train_path, train_data_portion, test_data_portion):
     if type(path) == list:
         train = []
         test = []
@@ -124,19 +124,24 @@ def load_data(path, train_data_portion, test_data_portion):
             tmp = pd.read_csv(i, header=None, index_col=False)
             tr = tmp.sample(frac=train_data_portion, random_state=10)
             te = tmp.drop(tr.index)
-            te = te.sample(frac=test_data_portion/(1-train_data_portion) , random_state=10)
+            if not train_path: 
+                te = te.sample(frac=test_data_portion/(1-train_data_portion) , random_state=10)
+                test.append(te.values)
+            else:
+                test.append(pd.read_csv(train_path, header=None, index_col=False).values)
             train.append(tr.values)
-            test.append(te.values)
         return train, test
-            
+     
     data = pd.read_csv(path, header=None, index_col=False)
     train = data.sample(frac=train_data_portion, random_state=10)
-    test = data.drop(train.index)
-    test = test.sample(frac=test_data_portion/(1-train_data_portion) , random_state=10)
+    if not train_path: 
+        test = data.drop(train.index)
+        test = test.sample(frac=test_data_portion/(1-train_data_portion) , random_state=10)
+    else:
+        test = pd.read_csv(train_path, header=None, index_col=False)
     # train = train.sample(frac=1, random_state=10).reset_index(drop=True).values
     # test = test.sample(frac=1, random_state=10).reset_index(drop=True).values
     return train.values, test.values
-
 
 class DataInfo:
     def __init__(

@@ -23,16 +23,23 @@ iid: False
 penalty: True
 classes_per_client_training: 8
 classes_per_client_testing: 12
-train_data_portion: 0.7
-test_data_portion: 0.3
+train_data_portion: 1
+test_data_portion: 0
 hidden_dims: 2
 mlp_dims: [32, 16, 12]
-train: 1
-data_path: "/home/preslav/Projects/fedavg-par/data/data_all.csv"
+data_path: ["/home/preslav/Projects/fedavg-par/data/data_2_std.csv",
+          "/home/preslav/Projects/fedavg-par/data/data_3_std.csv",
+          "/home/preslav/Projects/fedavg-par/data/data_4_std.csv",
+          "/home/preslav/Projects/fedavg-par/data/data_5_std.csv",
+          "/home/preslav/Projects/fedavg-par/data/data_6_std.csv",
+          "/home/preslav/Projects/fedavg-par/data/data_7_std.csv",
+          "/home/preslav/Projects/fedavg-par/data/data_8_std.csv"]
+train_path: "/home/preslav/Projects/fedavg-par/data/data_1_std.csv"
 
-
+train: 3
 eval: False
-
 corr: [
      [0,1,2,3,4]
 ]
+sig: False
+diff: False

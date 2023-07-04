@@ -135,6 +135,8 @@ try:
         output_dim=mlp_dims[-1]
         train = yml_file["train"]
         data_path = yml_file["data_path"]
+        train_path = yml_file["train_path"]
+        
         evaluate = yml_file["eval"]
         corr = yml_file["corr"]
         sig = yml_file["sig"]
@@ -157,6 +159,7 @@ print(datetime.now(), file=info_f)
 
 data_train, data_test = get_data(
     data_path,
+    train_path,
     num_clients,
     iid,
     DataInfo(
